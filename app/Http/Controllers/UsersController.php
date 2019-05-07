@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Session;
 use App\User;
+use App\Role;
 //use App\Imports\UsersImport;
 //use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +37,8 @@ class UsersController extends Controller
     public function create()
     {
         //
-        return view('admin.users.create');
+
+        return view('admin.users.create')->with('roles' , Role::all());
     }
 
     /**
@@ -48,6 +50,9 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
+
+//        dd($request->all());
+
         $this->validate($request,[
             // 'name' => ' required',
             // 'email' =>'required|email',
@@ -63,6 +68,8 @@ class UsersController extends Controller
             // 'password' => Hash::make($data['password']),
             'password' => bcrypt($request->password)
         ]);
+
+        $user->roles()->attach($request->roles);
 
         Session::flash('success', 'user created');
         return redirect()->route('users');
@@ -152,49 +159,49 @@ class UsersController extends Controller
 
     }
 
-    public function handleImportUser(Request $request){
-        // $validator = validator::make($request->all(),[
-        //     'file' => 'required',
-        // ]);
-        // if($validator->false()){
-        //     return
-        // }
-        $this->validate($request,[
-            // 'name' => ' required',
-            // 'email' =>'required|email',
-
-            'file' => 'required',
-        ]);
-
-        Excel::import(new UsersImport,request()->file('file'));
-
-
-        // $file = $request->file('file');
-        // $csvData = file_get_contents($file);
-        // $rows = array_map('str_getcsv', explode("\n", $csvData));
-        // $header = array_shift($rows);
-        // foreach ($rows as $row ) {
-        //     $row = array_combine($header, $row);
-
-        //     // $row['user_id'] = $request->part_id;
-        //      // 'user_id' => $request->user_id,
-        //      // User::create($row);
-
-        //     User::create([
-        //          // 'id' => $request->id,
-        //          'name' => $row['name'],
-        //          'email' => $row['email'],
-        //          'password' => bcrypt(uniqid()),
-        //          'admin' => 0,
-        //      ]);
-
-        // }
-        Session::flash('success' , 'CSV Imported Successfully');
-        return redirect()->back();
-
-        // dd($rows);
-
-    }
+//    public function handleImportUser(Request $request){
+//        // $validator = validator::make($request->all(),[
+//        //     'file' => 'required',
+//        // ]);
+//        // if($validator->false()){
+//        //     return
+//        // }
+//        $this->validate($request,[
+//            // 'name' => ' required',
+//            // 'email' =>'required|email',
+//
+//            'file' => 'required',
+//        ]);
+//
+//        Excel::import(new UsersImport,request()->file('file'));
+//
+//
+//        // $file = $request->file('file');
+//        // $csvData = file_get_contents($file);
+//        // $rows = array_map('str_getcsv', explode("\n", $csvData));
+//        // $header = array_shift($rows);
+//        // foreach ($rows as $row ) {
+//        //     $row = array_combine($header, $row);
+//
+//        //     // $row['user_id'] = $request->part_id;
+//        //      // 'user_id' => $request->user_id,
+//        //      // User::create($row);
+//
+//        //     User::create([
+//        //          // 'id' => $request->id,
+//        //          'name' => $row['name'],
+//        //          'email' => $row['email'],
+//        //          'password' => bcrypt(uniqid()),
+//        //          'admin' => 0,
+//        //      ]);
+//
+//        // }
+//        Session::flash('success' , 'CSV Imported Successfully');
+//        return redirect()->back();
+//
+//        // dd($rows);
+//
+//    }
 
     public function activate($id)
     {

@@ -19,7 +19,7 @@ class UsertableSeeder extends Seeder
             'password' => bcrypt('admin'),
             'email' => 'admin@admin.com',
             'admin' => 1,
-            'role_id' => 1
+//            'role_id' => 1
 
         ]);
     }

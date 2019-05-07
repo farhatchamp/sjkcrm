@@ -61,13 +61,14 @@
                         <th>
                             Email
                         </th>
-                        <th>
-                            Permission
-                        </th>
+                        <th>Role</th>
+                        {{--<th>--}}
+                            {{--Permission--}}
+                        {{--</th>--}}
                         <th>Created At</th>
-                        <th>
-                            Status
-                        </th>
+                        {{--<th>--}}
+                            {{--Status--}}
+                        {{--</th>--}}
                         <th>
                             Actions
                         </th>
@@ -81,36 +82,41 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                @if($user->admin)
-                                    <td>
-                                        <a href="{{route('user.not.admin' ,['id' => $user->id] )}}" class="btn btn-sm btn-danger">remove Admin</a>
 
-                                    </td>
+                                @foreach ($user->roles as $role)
+                                    <td>{{$role->name}}</td>
+                                @endforeach
 
-                                @else
+                                {{--@if($user->admin)--}}
+                                    {{--<td>--}}
+                                        {{--<a href="{{route('user.not.admin' ,['id' => $user->id] )}}" class="btn btn-sm btn-danger">remove Admin</a>--}}
+
+                                    {{--</td>--}}
+
+                                {{--@else--}}
 
 
-                                    <td>
-                                        <a href="{{route('user.admin' ,['id' => $user->id] )}}" class="btn btn-sm btn-primary">Make Admin</a>
-                                    </td>
+                                    {{--<td>--}}
+                                        {{--<a href="{{route('user.admin' ,['id' => $user->id] )}}" class="btn btn-sm btn-primary">Make Admin</a>--}}
+                                    {{--</td>--}}
 
-                                @endif
+                                {{--@endif--}}
 
                                 <td>{{$user->created_at->toDateString() }}</td>
 
-                                @if($user->active)
-                                    <td>
-                                        <a href="{{route('user.deactivate' ,['id' => $user->id] )}}" class="btn btn-sm btn-danger"> Deactivate</a>
+                                {{--@if($user->active)--}}
+                                    {{--<td>--}}
+                                        {{--<a href="{{route('user.deactivate' ,['id' => $user->id] )}}" class="btn btn-sm btn-danger"> Deactivate</a>--}}
 
-                                    </td>
+                                    {{--</td>--}}
 
-                                @else
+                                {{--@else--}}
 
-                                    <td>
-                                        <a href="{{route('user.activate' ,['id' => $user->id] )}}" class="btn btn-sm btn-primary"> Activate</a>
-                                    </td>
+                                    {{--<td>--}}
+                                        {{--<a href="{{route('user.activate' ,['id' => $user->id] )}}" class="btn btn-sm btn-primary"> Activate</a>--}}
+                                    {{--</td>--}}
 
-                                @endif
+                                {{--@endif--}}
 
                                 <td>
                                     <a href="{{route('user.delete' , $user->id)}}"><i class=" fa fa-trash"></i></a>

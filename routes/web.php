@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', function () {
-    return App\Role::find(2)->user;
+    return App\User::find(2)->roles;
 });
 
 Route::get('/', function () {

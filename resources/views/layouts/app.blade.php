@@ -55,7 +55,7 @@
                             </li>
                             <li>
                                 <a class=""></i>
-                                    <span>Fitness Routiness For Even The Busiest Individual...</span>
+                                    <span></span>
                                 </a>
                             </li>
                         </ul>

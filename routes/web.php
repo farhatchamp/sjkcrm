@@ -12,7 +12,8 @@
 */
 
 Route::get('/test', function () {
-    return App\User::find(2)->roles;
+    // return App\User::find(2)->roles;
+    return App\Role::with('users')->where('name', 'company')->get();
 });
 
 Route::get('/', function () {
@@ -25,6 +26,39 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => 'admin'] , function(){
+
+    Route::get('/companies',[
+        'uses' => 'CompanyController@index',
+        'as' => 'companies'
+    ]);
+
+    Route::get('/company/create',[
+        'uses' => 'CompanyController@create',
+        'as' => 'company.create'
+    ]);
+
+    Route::post('/company/store',[
+        'uses' => 'CompanyController@store',
+        'as' => 'company.store'
+    ]);
+
+    Route::get('/company/edit/{id}',[
+        'uses' => 'CompanyController@edit',
+        'as' => 'company.edit'
+    ]);
+
+    Route::get('/company/update/{id}',[
+        'uses' => 'CompanyController@update',
+        'as' => 'company.update'
+    ]);
+    
+       Route::get('/company/delete/{id}',[
+        'uses' => 'CompanyController@destroy',
+        'as' => 'company.delete'
+    ]);
+
+
+
     Route::get('/users',[
         'uses' => 'UsersController@index',
         'as' => 'users'

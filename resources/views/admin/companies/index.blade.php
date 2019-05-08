@@ -23,7 +23,7 @@
 
     <div class="ibox">
         <div class="ibox-body">
-            <h3 class="font-strong mb-4">USERS LIST</h3>
+            <h3 class="font-strong mb-4">COMPANIES LIST</h3>
             <div class="flexbox mb-4">
                 <div class="flexbox">
                     <!--  <label class="mb-0 mr-2">Type:</label>
@@ -46,10 +46,10 @@
                         <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
                     </div>
                 </div>
-                 <div class="flexbox">
+                <div class="flexbox">
                     {{--<a class="btn btn-rounded btn-info btn-air" href="{{route('import-user')}}">  Import User</a>--}}
 
-                    <a class="btn ml-3  btn-rounded btn-primary btn-air" href="{{route('user.create')}}"> <i class="fa fa-plus"></i> Add User</a>
+                    <a class="btn ml-3  btn-rounded btn-primary btn-air" href="{{route('company.create')}}"> <i class="fa fa-plus"></i> Add Company</a>
                 </div>
             </div>
             <div class="table-responsive ">
@@ -57,18 +57,9 @@
                     <thead class="thead-default thead-lg">
 
                     <tr>
-                        <th>User Name</th>
-                        <th>
-                            Email
-                        </th>
-                        <th>Role</th>
-                        {{--<th>--}}
-                            {{--Permission--}}
-                        {{--</th>--}}
-                        <th>Created At</th>
-                        {{--<th>--}}
-                            {{--Status--}}
-                        {{--</th>--}}
+                        <th>Name</th>
+                       <th>Owner</th>
+                       
                         <th>
                             Actions
                         </th>
@@ -77,51 +68,15 @@
                     </thead>
 
                     <tbody>
-                    @if ($users->count() > 0)
-                        @foreach($users as $user)
+                    @if ($companies->count() > 0)
+                        @foreach($companies as $company)
                             <tr>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                     
-                                @foreach ($user->roles as $role)
-                                    <td>{{$role->name}}</td>
-                                  
-                                @endforeach
-
-                                {{--@if($user->admin)--}}
-                                    {{--<td>--}}
-                                        {{--<a href="{{route('user.not.admin' ,['id' => $user->id] )}}" class="btn btn-sm btn-danger">remove Admin</a>--}}
-
-                                    {{--</td>--}}
-
-                                {{--@else--}}
-
-
-                                    {{--<td>--}}
-                                        {{--<a href="{{route('user.admin' ,['id' => $user->id] )}}" class="btn btn-sm btn-primary">Make Admin</a>--}}
-                                    {{--</td>--}}
-
-                                {{--@endif--}}
-
-                                <td>{{$user->created_at->toDateString() }}</td>
-
-                                {{--@if($user->active)--}}
-                                    {{--<td>--}}
-                                        {{--<a href="{{route('user.deactivate' ,['id' => $user->id] )}}" class="btn btn-sm btn-danger"> Deactivate</a>--}}
-
-                                    {{--</td>--}}
-
-                                {{--@else--}}
-
-                                    {{--<td>--}}
-                                        {{--<a href="{{route('user.activate' ,['id' => $user->id] )}}" class="btn btn-sm btn-primary"> Activate</a>--}}
-                                    {{--</td>--}}
-
-                                {{--@endif--}}
-
+                                <td>{{$company->name}}</td>
+                                <td>{{$company->user->name}}</td>
+                               
                                 <td>
-                                    <a href="{{route('user.delete' , $user->id)}}"><i class=" fa fa-trash"></i></a>
-                                    <a href="{{route('user.edit' , $user->id)}}"><i class=" fa fa-edit"></i></a>
+                                    <a href="{{route('company.delete' , $company->id)}}"><i class=" fa fa-trash"></i></a>
+                                    <a href="{{route('company.edit' , $company->id)}}"><i class=" fa fa-edit"></i></a>
                                 </td>
                             </tr>
 
@@ -138,7 +93,7 @@
 
     <div class="row" style="margin-top:15px;">
         <div class="col-md-12 text-center">
-            {{$users->links()}}
+            {{$companies->links()}}
         </div>
     </div>
 

@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function contact(){
         return $this->hasMany('App\Contact');
     }
+
+    public function companies(){
+        return $this->hasMany('App\Company');
+    }
 }

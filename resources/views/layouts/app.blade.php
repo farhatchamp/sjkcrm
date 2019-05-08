@@ -118,7 +118,7 @@
                                 </li>
                               @elseif (Auth::check() )
                               
-                                @endif
+                            @endif
                       
                     </ul>
                 </div>
@@ -133,7 +133,7 @@
            
             
                 
-                @if (Auth::check() && Auth::user()->admin)
+                @if (Auth::check() )
                 <div class="col-md-12 ">
                     <div class="wrapper content-wrapper">
                         <div class="page-content fade-in-up" >

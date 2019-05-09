@@ -4,30 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-use App\Company;
 use App\Contact;
-use App\User;
-use App\Role;
+use App\Company;
 
-class CompanyController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function __construct(){
-        $this->middleware('admin');
-    }
-
     public function index()
     {
         //
-
-        return view('admin.companies.index')
-        ->with('companies', Company::paginate(5))
-        ->with('users' , User::all());
     }
 
     /**
@@ -38,7 +27,6 @@ class CompanyController extends Controller
     public function create()
     {
         //
-        return view('admin.companies.create')->with('roles' , Role::with('users')->where('name', 'company')->get());
     }
 
     /**
@@ -51,22 +39,35 @@ class CompanyController extends Controller
     {
         //
 
+
         // dd($request->all());
 
-    	 $this->validate($request,[
+         $this->validate($request,[
+            'title' => ' required',
+            'company_id' => 'required',
+            'phone_numbers' => 'required',
+            'email_address' => 'required',
+            'notes' =>'required',
 
             'name' => ['required', 'string', 'max:255'],
-            'user_id' => ['required'],
         ]);
 
-    	  $user = Company::create([
+          $user = Contact::create([
             'name' => $request->name,
-            'user_id' => $request->user_id,
+            'company_id' => $request->company_id,
+            'title'=> $request->title,
+            'phone_numbers'=> $request->phone_numbers,
+            'email_address'=> $request->email_address,
+            'notes'=> $request->notes,
+            // 'password' => Hash::make($data['password']),
+            // 'password' => bcrypt($request->password)
         ]);
 
+        // $user->roles()->attach($request->roles);
 
         Session::flash('success', 'user created');
-        return redirect()->route('companies');
+        return redirect()->back();
+
     }
 
     /**
@@ -78,12 +79,6 @@ class CompanyController extends Controller
     public function show($id)
     {
         //
-         $company = Company::find($id);
-         $contacts = Contact::where('company_id' , '=' , $id)->get();
-         // die($contact);
-        return view('admin.companies.show')
-        ->with('company', $company)
-        ->with('contacts', $contacts);
     }
 
     /**
@@ -95,10 +90,6 @@ class CompanyController extends Controller
     public function edit($id)
     {
         //
-
-         $company = Company::find($id);
-        return view('admin.companies.edit')->with('company', $company);
-
     }
 
     /**

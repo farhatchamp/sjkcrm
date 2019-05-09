@@ -179,6 +179,14 @@
   
 
     $(document).ready(function(){
+        // $('.contactForm').hide();
+        // $('.showInfomationForm').click(function(){
+        //     // alert('hi')
+        //     $(this).parent().siblings('form').show();
+        //     $(this).hide();
+        //     $(this).parents('.ibox-body').find('.box-list').hide();
+        // });
+
       $(function() {
             $('#products-table').DataTable({
                 pageLength: 10,

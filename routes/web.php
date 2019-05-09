@@ -42,9 +42,21 @@ Route::group(['prefix' => 'admin'] , function(){
         'as' => 'company.store'
     ]);
 
+     Route::post('/company/show/{id}/contact',[
+        'uses' => 'ContactController@store',
+        'as' => 'contact.store'
+    ]);
+
+
+
     Route::get('/company/edit/{id}',[
         'uses' => 'CompanyController@edit',
         'as' => 'company.edit'
+    ]);
+
+     Route::get('/company/show/{id}',[
+        'uses' => 'CompanyController@show',
+        'as' => 'company.show'
     ]);
 
     Route::get('/company/update/{id}',[

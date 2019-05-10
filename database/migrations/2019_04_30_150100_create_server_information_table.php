@@ -16,10 +16,10 @@ class CreateServerInformationTable extends Migration
         Schema::create('server_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->string('ip address');
-            $table->boolean('ssl certification')->default(0);
-            $table->string('expiration date');
-            $table->string('renew date');
+            $table->string('ip_address');
+            $table->boolean('ssl_certification')->default(0);
+            $table->string('expiration_date');
+            $table->string('renew_date');
             $table->timestamps();
         });
     }

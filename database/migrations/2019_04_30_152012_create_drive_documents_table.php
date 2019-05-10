@@ -16,7 +16,7 @@ class CreateDriveDocumentsTable extends Migration
         Schema::create('drive_documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->string('drive links');
+            $table->string('drive_links');
 
             $table->timestamps();
         });

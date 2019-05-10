@@ -16,7 +16,7 @@ class CreateMeetingNotesTable extends Migration
         Schema::create('meeting_notes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->text('meeting note');
+            $table->text('meeting_note');
             $table->timestamps();
         });
     }

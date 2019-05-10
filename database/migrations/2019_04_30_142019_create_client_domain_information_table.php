@@ -16,8 +16,8 @@ class CreateClientDomainInformationTable extends Migration
         Schema::create('client_domain_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->string('list of domain');
-            $table->string('domain owner');
+            $table->string('list_of_domain');
+            $table->string('domain_owner');
             $table->timestamps();
         });
     }

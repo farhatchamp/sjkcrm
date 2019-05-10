@@ -16,10 +16,10 @@ class CreateCustomerBillingInformationTable extends Migration
         Schema::create('customer_billing_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->string('invoice address');
-            $table->string('cc info');
-            $table->string('general information');
-            $table->string('billing contact');
+            $table->string('invoice_address');
+            $table->string('cc_info');
+            $table->string('general_information');
+            $table->string('billing_contact');
             $table->timestamps();
         });
     }

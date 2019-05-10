@@ -16,7 +16,7 @@ class CreateEmailInformationTable extends Migration
         Schema::create('email_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('company_id');
-            $table->string('hosted email');
+            $table->string('hosted_email');
             $table->timestamps();
         });
     }

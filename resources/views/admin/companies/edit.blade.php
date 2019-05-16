@@ -34,6 +34,25 @@
                             <input type="text" name="name" class="form-control form-control-solid" placeholder="User Name" value="{{$company->name}}" id="title">
                         </div>
 
+                        <div class="row">
+                            
+                            <div class="col-md-12 form-group">
+                                <div class="form-group mb-4">
+                                    <label for="Role">Company Owner</label>
+                                    <select name="user_id" class="form-control form-control-solid">
+                                        @foreach ($roles as $role)
+                                            @foreach ($role->users as $user)
+                                        <option  value="{{$user->id}}">
+                                                {{$user->name}}
+                                        </option>
+                                            @endforeach
+                                            @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+
                       
 
                         <div class="text-right">

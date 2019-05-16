@@ -16,8 +16,21 @@ Route::get('/test', function () {
     return App\Role::with('users')->where('name', 'company')->get();
 });
 
+// Route::get('/', function () {
+//     return view('admin/companies/index')->name('home');
+// });
+
+// if ( Auth::check())
+// {
+//     Route::get('/','AdminController@index');
+// }
+// else
+// {
+//     Route::get('/','HomeController@index');
+// }
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('login'));
 });
 
 Auth::routes();
@@ -30,6 +43,11 @@ Route::group(['prefix' => 'admin'] , function(){
     Route::get('/companies',[
         'uses' => 'CompanyController@index',
         'as' => 'companies'
+    ]);
+
+    Route::get('/companies/CompanyListWindow/',[
+        'uses' => 'CompanyController@CompanyListWindow',
+        'as' => 'companies.CompanyListWindow'
     ]);
 
     Route::get('/company/create',[
@@ -47,6 +65,11 @@ Route::group(['prefix' => 'admin'] , function(){
         'as' => 'contact.store'
     ]);
 
+     Route::post('/company/show/{id}/domain',[
+        'uses' => 'DomainController@store',
+        'as' => 'domain.store'
+    ]);
+
 
 
     Route::get('/company/edit/{id}',[
@@ -59,7 +82,7 @@ Route::group(['prefix' => 'admin'] , function(){
         'as' => 'company.show'
     ]);
 
-    Route::get('/company/update/{id}',[
+    Route::post('/company/update/{id}',[
         'uses' => 'CompanyController@update',
         'as' => 'company.update'
     ]);
@@ -70,6 +93,15 @@ Route::group(['prefix' => 'admin'] , function(){
     ]);
 
 
+   Route::get('company/activate/{id}',[
+        'uses' => 'CompanyController@activate',
+        'as' => 'company.activate'
+    ]);
+
+    Route::get('company/deactivate/{id}',[
+        'uses' => 'CompanyController@deactivate',
+        'as' => 'company.deactivate'
+    ]);
 
     Route::get('/users',[
         'uses' => 'UsersController@index',

@@ -5,7 +5,6 @@
     <div class="row justify-content-center" style="margin-top:90px;">
         <div class="col-md-4">
             <!-- <h1>Login</h1> -->
-            <img width="150" style="display:block; margin:0 auto" src="https://busylifeworkouts.com/images/logo.png">
             <h2 class="text-center">Get more things done with Loggin platform.
 </h2>
             <div class="card">

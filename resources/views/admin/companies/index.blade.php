@@ -59,9 +59,10 @@
                     <tr>
                         <th>Name</th>
                        <th>Owner</th>
-                       
+                        <th>Status</th>
+                      
                         <th>
-                            Actions
+                            Action
                         </th>
 
                     </tr>
@@ -73,12 +74,30 @@
                             <tr>
                                 <td>{{$company->name}}</td>
                                 <td>{{$company->user->name}}</td>
-                               
+                                
+                                  @if($company->active)
+                                    <td>
+                                        <a href="{{route('company.deactivate' ,['id' => $company->id] )}}" class="btn btn-sm btn-danger"> Deactivate</a>
+
+                                    </td>
+
+                                    @else
+
+                                    <td>
+                                        <a href="{{route('company.activate' ,['id' => $company->id] )}}" class="btn btn-sm btn-primary"> Activate</a>
+                                    </td>
+
+                                 @endif
+                                
+
                                 <td>
                                     <a href="{{route('company.delete' , $company->id)}}"><i class=" fa fa-trash"></i></a>
                                     <a href="{{route('company.edit' , $company->id)}}"><i class=" fa fa-edit"></i></a>
                                 </td>
+
+
                             </tr>
+                           
 
                         @endforeach
                     @endif

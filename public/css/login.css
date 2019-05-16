@@ -1,7 +1,8 @@
 body {
-        background-image: -moz-linear-gradient(0deg, #691cff 0%, #f51cb0 100%);
+        /*background-image: -moz-linear-gradient(0deg, #691cff 0%, #f51cb0 100%);
     background-image: -webkit-linear-gradient(0deg, #691cff 0%, #f51cb0 100%);
-    background-image: -ms-linear-gradient(0deg, #691cff 0%, #f51cb0 100%);
+    background-image: -ms-linear-gradient(0deg, #691cff 0%, #f51cb0 100%);*/
+    background: #191919;
 }
 .form-control{
 	background: rgba(255, 255, 255, 0.15);
@@ -13,6 +14,7 @@ body {
 .form-control:focus{
 	background: rgba(255, 255, 255, 0.15);
 	box-shadow: none;
+	color: #fff;
 }
 .card{
 	background: none;

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SJKCRM') }}</title>
 
     <!-- Scripts -->
 
@@ -115,6 +115,13 @@
                               
                                  <li class="nav-item {{ Request::path() == 'admin/users' ? 'active' : '' }}">
                                     <a class="nav-link" href="{{route('users')}}"> <i class="fa fa-user"></i>  Users</a>
+                                </li>
+                                <li class="nav-item {{ Request::path() == 'admin/companies' ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{route('companies')}}"> <i class="far fa-building"></i>  Companies</a>
+                                </li>
+
+                                <li class="nav-item {{ Request::path() == 'admin/companies/CompanyListWindow' ? 'active' : '' }}">
+                                    <a class="nav-link" href="{{route('companies.CompanyListWindow')}}"> <i class="fas fa-cube"></i>  Company List Window</a>
                                 </li>
                               @elseif (Auth::check() )
                               

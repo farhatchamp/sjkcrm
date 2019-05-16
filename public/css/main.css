@@ -5098,3 +5098,9 @@ table > tbody > tr > td > span.footable-toggle {
   margin-bottom: 15px;
   border-bottom: 1px solid #f4f4f5;
 }
+.ibox .ibox{
+  margin-bottom: 0;
+}
+.company-holder .ibox-body{
+  display: none;
+}

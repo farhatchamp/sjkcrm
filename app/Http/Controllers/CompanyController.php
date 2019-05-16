@@ -30,6 +30,15 @@ class CompanyController extends Controller
         ->with('users' , User::all());
     }
 
+    public function CompanyListWindow(Request $request)
+    {
+        //
+
+        return view('admin.companies.CompanyListWindow')
+        ->with('companies', Company::all())
+        ->with('contacts' , Contact::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -59,13 +68,13 @@ class CompanyController extends Controller
             'user_id' => ['required'],
         ]);
 
-    	  $user = Company::create([
+    	  $company = Company::create([
             'name' => $request->name,
             'user_id' => $request->user_id,
         ]);
 
 
-        Session::flash('success', 'user created');
+        Session::flash('success', 'Company created');
         return redirect()->route('companies');
     }
 
@@ -97,7 +106,9 @@ class CompanyController extends Controller
         //
 
          $company = Company::find($id);
-        return view('admin.companies.edit')->with('company', $company);
+        return view('admin.companies.edit')->with('company', $company)
+                                            ->with('roles' , Role::with('users')->where('name', 'company')->get()); 
+        ;
 
     }
 
@@ -111,6 +122,30 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+           $this->validate($request,[
+            // 'name' => ' required',
+            // 'email' =>'required|email',
+
+         
+            'name' => ['required', 'string', 'max:255'],
+            'user_id' => ['required'],
+        ]);
+        $company = Company::find($id);
+        // $user = User::update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //      // 'password' => Hash::make($data['password']),
+        //      'password' => bcrypt($request->password)
+        // ]);
+
+        $company->name = $request->name;
+        $company->user_id = $request->user_id;
+        // $user->name = $request->name;
+        $company->save();
+
+        Session::flash('success', 'Company Updated Successfully');
+        return redirect()->route('companies');
     }
 
     /**
@@ -119,8 +154,43 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+     public function destroy($id)
     {
         //
+
+        $company = Company::find($id);
+        $company->delete();
+        Session::flash('success' , 'Company Deleted');
+
+        return redirect()->route('companies');
     }
+
+     public function activate($id)
+        {
+            //
+
+            $company = Company::find($id);
+            $company->active = 1;
+            $company->save();
+
+            Session::flash('success' , 'Company Activated Successfully');
+
+            return redirect()->back(); 
+        }
+
+
+     public function deactivate($id)
+        {
+            //
+
+            $company = Company::find($id);
+            $company->active = 0;
+            $company->save();
+
+
+            Session::flash('success' , 'Company deactivated Successfully');
+
+            return redirect()->back(); 
+        }
+
 }
